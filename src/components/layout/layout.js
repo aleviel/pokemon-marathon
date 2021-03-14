@@ -1,17 +1,15 @@
 import Styles from './styles.module.css'
 
 export default function Layout(props) {
-    const {title, descr, colorBg, urlBg} = props;
+    const {title, colorBg, urlBg, children} = props;
     // const styleBg = urlBg ? {backgroundImage: `url(${urlBg})`} : {background: colorBg}
-
-    const styleBg = {};
+    const styleBg = {}
     if (urlBg) {
         styleBg.backgroundImage = `url(${urlBg})`
     }
     if (colorBg) {
         styleBg.backgroundColor = colorBg
     }
-
     return (
         <section
             style={styleBg}
@@ -24,7 +22,9 @@ export default function Layout(props) {
                         <span className={Styles.separator}></span>
                     </div>
                     <div className={`${Styles.desc} ${Styles.full}`}>
-                        <p>{descr}</p>
+                        <div>
+                            {children}
+                        </div>
                     </div>
                 </article>
             </div>
