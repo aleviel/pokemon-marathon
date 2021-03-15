@@ -1,7 +1,7 @@
 import Styles from './styles.module.css'
 
 export default function Layout(props) {
-    const {title, descr, colorBg = 'tomato', urlBg} = props;
+    const {title, colorBg, urlBg, children} = props;
     // const styleBg = urlBg ? {backgroundImage: `url(${urlBg})`} : {background: colorBg}
     const styleBg = {}
     if (urlBg) {
@@ -22,7 +22,9 @@ export default function Layout(props) {
                         <span className={Styles.separator}></span>
                     </div>
                     <div className={`${Styles.desc} ${Styles.full}`}>
-                        <p>{descr}</p>
+                        <div>
+                            {children}
+                        </div>
                     </div>
                 </article>
             </div>
