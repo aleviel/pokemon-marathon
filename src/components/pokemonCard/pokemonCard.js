@@ -1,4 +1,5 @@
 import {useState} from 'react';
+import CN from 'classnames';
 
 import Styles from './styles.module.css'
 import BackCardSideImg from './img/card-back-side.jpg'
@@ -19,15 +20,15 @@ export default function PokemonCard(props) {
                  onSetActive()
              }}
         >
-            <div className={`${Styles.pokemonCard} ${isActive ? Styles.active : ''}`}>
+            <div className={CN(Styles.pokemonCard, {[Styles.active]: isActive})}>
                 <div className={Styles.cardFront}>
-                    <div className={`${Styles.wrap} ${Styles.front}`}>
-                        <div className={`${Styles.pokemon}  ${type}`}>
+                    <div className={CN(Styles.wrap, Styles.front)}>
+                        <div className={CN(Styles.pokemon, type)}>
                             <div className={Styles.values}>
-                                <div className={`${Styles.count} ${Styles.top}`}>{values.top}</div>
-                                <div className={`${Styles.count} ${Styles.right}`}>{values.right}</div>
-                                <div className={`${Styles.count} ${Styles.bottom}`}>{values.bottom}</div>
-                                <div className={`${Styles.count} ${Styles.left}`}>{values.left}</div>
+                                <div className={CN(Styles.count, Styles.top)}>{values.top}</div>
+                                <div className={CN(Styles.count, Styles.right)}>{values.right}</div>
+                                <div className={CN(Styles.count, Styles.bottom)}>{values.bottom}</div>
+                                <div className={CN(Styles.count, Styles.left)}>{values.left}</div>
                             </div>
                             <div className={Styles.imgContainer}>
                                 <img src={img} alt={name}/>
@@ -35,7 +36,7 @@ export default function PokemonCard(props) {
                             <div className={Styles.info}>
                                 <span className={Styles.number}>{id}</span>
                                 <h3 className={Styles.name}>{name}</h3>
-                                <small className={Styles.type}>Type: <span>{type}</span></small>
+                                <small className={type}>Type: <span>{type}</span></small>
                             </div>
                         </div>
                     </div>
