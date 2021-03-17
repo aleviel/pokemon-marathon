@@ -1,4 +1,5 @@
 import Styles from './styles.module.css'
+import CN from 'classnames'
 
 export default function Layout(props) {
     const {title, colorBg, urlBg, children} = props;
@@ -21,7 +22,7 @@ export default function Layout(props) {
                         <h3>{title}</h3>
                         <span className={Styles.separator}></span>
                     </div>
-                    <div className={`${Styles.desc} ${Styles.full}`}>
+                    <div className={CN(Styles.desc, Styles.full)}>
                         <div>
                             {children}
                         </div>
