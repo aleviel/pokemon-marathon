@@ -7,7 +7,7 @@ export default function App() {
 
     const onChangePage = (pageName) => {
         setPage(prev =>
-            prev === pageName ? '' : pageName)
+            prev === pageName ? prev : pageName)
     }
 
     switch (page) {
@@ -20,6 +20,8 @@ export default function App() {
                 onButtonClick={onChangePage}
             />
         default:
-            return <HomePage/>
+            return <HomePage
+                onButtonClick={onChangePage}
+            />
     }
 }
