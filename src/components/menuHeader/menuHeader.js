@@ -1,11 +1,16 @@
 import Menu from "../menu";
 import NavBar from "../navBar";
 import {useState} from "react";
+import {Link} from "react-router-dom";
 
-export default function MenuHeader({onButtonClick}) {
+export default function MenuHeader({bgActive}) {
 
-    const menuItems = ['home', 'game', 'about', 'contact']
-    const [isActive, setActive] = useState(false)
+    const menuItems = [
+        {title: 'home', pathTo: '/home'},
+        {title: 'game', pathTo: '/game'},
+        {title: 'about', pathTo: '/about'},
+        {title: 'contact', pathTo: '/contact'}]
+    const [isActive, setActive] = useState(null)
 
     const onChangeActivity = () => {
         setActive(prev => !prev)
@@ -13,26 +18,24 @@ export default function MenuHeader({onButtonClick}) {
 
     return (
         <>
-            <NavBar
-                onClickButton={onChangeActivity}
-                active={isActive}
-            />
-            <Menu
-                active={isActive}
-            >
-                {menuItems.map(item => {
+            <Menu active={isActive}>
+                {menuItems.map(({title, pathTo}, index) => {
                     return (
-                        <li>
-                            <a onClick={() => {
-                                onButtonClick && onButtonClick(item)
-                            }}
-                            >
-                                {item.toUpperCase()}
-                            </a>
+                        <li key={index}>
+                            <Link to={pathTo} onClick={() => {
+                                onChangeActivity();
+                            }}>
+                                {title.toUpperCase()}
+                            </Link>
                         </li>
                     )
                 })}
             </Menu>
+            <NavBar
+                onClickButton={onChangeActivity}
+                active={isActive}
+                bgActive={bgActive}
+            />
         </>
     )
 }

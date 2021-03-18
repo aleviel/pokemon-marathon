@@ -13,14 +13,12 @@ function HomePage({onButtonClick}) {
 
     return (
         <>
-            <MenuHeader
+            <Header
                 onButtonClick={(page) => {
                     onButtonClick && onButtonClick(page)
-                }}/>
-
-            <Header
-                title={'This is title'}
-                descr={'This is Description!'}
+                }}
+                title={'Pokemon game'}
+                descr={'This is simple triple triad card game!'}
             />
 
             <Layout
