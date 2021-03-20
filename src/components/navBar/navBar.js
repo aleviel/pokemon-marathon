@@ -1,21 +1,19 @@
 import CN from 'classnames';
-
 import Styles from './styles.module.css'
 
-export default function NavBar({onClickButton, active}) {
+export default function NavBar({onClickButton, active, bgActive}) {
     return (
-        // <nav id="navbar">
-        <nav className={Styles.navbar}>
+        <nav className={CN(Styles.navbar, {[Styles.bgActive]: bgActive})}>
             <div className={Styles.navWrapper}>
                 <p className={Styles.brand}>
                     LOGO
                 </p>
-                <a className={CN(Styles.menuButton, {[Styles.active]: active})}>
+                <p className={CN(Styles.menuButton, {[Styles.active]: active})}>
                     <span
                         onClick={() => {
                             onClickButton()
                         }}/>
-                </a>
+                </p>
             </div>
         </nav>
     )

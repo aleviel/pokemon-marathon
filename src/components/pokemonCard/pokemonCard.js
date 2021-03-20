@@ -6,18 +6,12 @@ import BackCardSideImg from './img/card-back-side.jpg'
 
 export default function PokemonCard(props) {
 
-    const [isActive, setActive] = useState(false)
-
-    const onSetActive = () => {
-        !isActive ? setActive(true) : setActive(false)
-    }
-
-    const {name, id, img, values, type} = props;
+    const {onSetActive, name, id, img, values, type, isActive} = props;
 
     return (
         <div className={Styles.root}
              onClick={() => {
-                 onSetActive()
+                 onSetActive(id)
              }}
         >
             <div className={CN(Styles.pokemonCard, {[Styles.active]: isActive})}>

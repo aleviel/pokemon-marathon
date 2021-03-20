@@ -1,26 +1,24 @@
-import MenuHeader from "../../menuHeader";
+// import MenuHeader from "../../menuHeader";
 import Header from "../../header";
 import Layout from "../../layout";
 import Footer from "../../footer";
-import PokemonCard from "../../pokemonCard";
+// import PokemonCard from "../../pokemonCard";
 
 import './styles.css'
 import Img from '../../images/bg3.jpg'
 import Img2 from '../../images/bg2.jpg'
-import pokemonCards from '../../pokemons.json'
+// import pokemonCards from '../../pokemons.json'
 
 function HomePage({onButtonClick}) {
 
     return (
         <>
-            <MenuHeader
+            <Header
                 onButtonClick={(page) => {
                     onButtonClick && onButtonClick(page)
-                }}/>
-
-            <Header
-                title={'This is title'}
-                descr={'This is Description!'}
+                }}
+                title={'Pokemon game'}
+                descr={'This is simple triple triad card game!'}
             />
 
             <Layout
@@ -40,24 +38,24 @@ function HomePage({onButtonClick}) {
                 </p>
             </Layout>
 
-            <Layout
-                title={'Cards'}
-                colorBg={'plum'}
-            >
-                <div className='flex'>
-                    {
-                        pokemonCards.map((elem) => {
-                            return <PokemonCard key={elem.id}
-                                                name={elem.name}
-                                                id={elem.id}
-                                                img={elem.img}
-                                                values={elem.values}
-                                                type={elem.type}
-                            />
-                        })
-                    }
-                </div>
-            </Layout>
+            {/*<Layout*/}
+            {/*    title={'Cards'}*/}
+            {/*    colorBg={'plum'}*/}
+            {/*>*/}
+            {/*    <div className='flex'>*/}
+            {/*        {*/}
+            {/*            pokemonCards.map((elem) => {*/}
+            {/*                return <PokemonCard key={elem.id}*/}
+            {/*                                    name={elem.name}*/}
+            {/*                                    id={elem.id}*/}
+            {/*                                    img={elem.img}*/}
+            {/*                                    values={elem.values}*/}
+            {/*                                    type={elem.type}*/}
+            {/*                />*/}
+            {/*            })*/}
+            {/*        }*/}
+            {/*    </div>*/}
+            {/*</Layout>*/}
 
             <Layout
                 title={'Layout3 title'}
