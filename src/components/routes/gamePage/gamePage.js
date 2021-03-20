@@ -7,15 +7,9 @@ export default function GamePage() {
     const [pokemons, setPokemons] = useState([...pokemonCards]);
 
     const onSetActive = (id) => {
-        const copy = JSON.parse(JSON.stringify(pokemons))
-        const newPokemons = copy.map(elem => {
-                if (elem.id === id) {
-                    elem.isActive = true
-                }
-                return {...elem}
-            }
-        )
-        setPokemons(() => newPokemons)
+        setPokemons((prev) => prev.map(elem =>
+            elem.id === id ? {...elem, isActive: !elem.isActive} : elem
+        ))
     }
     const history = useHistory();
     return (

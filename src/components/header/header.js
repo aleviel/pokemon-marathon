@@ -1,6 +1,6 @@
 import {useHistory} from 'react-router-dom';
 import Styles from './style.module.css'
-import StylesBtn from './styleButton.module.css';
+import StylesBtn from './styleButton.css';
 
 
 export default function Header(props) {
