@@ -1,4 +1,3 @@
-import {useState} from 'react';
 import CN from 'classnames';
 
 import Styles from './styles.module.css'
@@ -19,10 +18,10 @@ export default function PokemonCard(props) {
                     <div className={CN(Styles.wrap, Styles.front)}>
                         <div className={CN(Styles.pokemon, type)}>
                             <div className={Styles.values}>
-                                <div className={CN(Styles.count, Styles.top)}>{values.top}</div>
-                                <div className={CN(Styles.count, Styles.right)}>{values.right}</div>
-                                <div className={CN(Styles.count, Styles.bottom)}>{values.bottom}</div>
-                                <div className={CN(Styles.count, Styles.left)}>{values.left}</div>
+                                <div className={CN(Styles.count, Styles.top)}>{values && values.top}</div>
+                                <div className={CN(Styles.count, Styles.right)}>{values && values.right}</div>
+                                <div className={CN(Styles.count, Styles.bottom)}>{values && values.bottom}</div>
+                                <div className={CN(Styles.count, Styles.left)}>{values && values.left}</div>
                             </div>
                             <div className={Styles.imgContainer}>
                                 <img src={img} alt={name}/>
