@@ -5,29 +5,33 @@ import database from '../../services/firebase';
 
 export default function GamePage() {
     useEffect(() => {
-        database.ref('pokemons').once('value', (snapshot) => {
-            setPokemons(snapshot.val())
-        })
+        updateStateFromDB()
     }, [])
 
     const history = useHistory();
     const [pokemons, setPokemons] = useState({});
 
+    const updateStateFromDB = () => {
+        database.ref('pokemons').once('value', (snapshot) => {
+            setPokemons(snapshot.val())
+        })
+    }
+
     const updatePokemonInDB = (id, item) => {
         database.ref('pokemons/' + id).set({
             ...item
+        }).then(() => {
+            updateStateFromDB()
         });
     }
 
     const addPokemon = () => {
         const newKey = database.ref().child('pokemons').push().key;
-        //берем описание рандомного покемона из изначальных
         const newPokemon = Object.entries(pokemons)[Math.floor(Math.random() * 5)][1]
-        //обновляем стейт, добавив нового
+        newPokemon.isActive = false;
         setPokemons(prev => {
-            return Object.assign({...prev}, {[newKey]: newPokemon})
+            return Object.assign({...prev}, {[newKey]: {...newPokemon}})
         })
-        //пушим нового в БД
         updatePokemonInDB(newKey, newPokemon)
     }
 
