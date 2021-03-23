@@ -1,7 +1,6 @@
 import CN from 'classnames';
 
 import Styles from './styles.module.css'
-// import BackCardSideImg from '../../assets/card-back-side.jpg'
 
 export default function PokemonCard(props) {
 

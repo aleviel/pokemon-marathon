@@ -2,12 +2,14 @@ import {useHistory} from 'react-router-dom';
 import {useContext, useState, useEffect} from 'react';
 import PokemonCard from "../../../../components/pokemonCard";
 
+import {PokemonContext} from "../../../../context/pokemonContex";
 import {FireBaseContext} from '../../../../context/firebaseContext';
 
 import Styles from './styles.module.css'
 
 export default function StartPage() {
     const firebase = useContext(FireBaseContext);
+    const PokemonContex = useContext(PokemonContext);
 
     useEffect(() => {
         firebase.getPokemonSocket(
@@ -24,6 +26,7 @@ export default function StartPage() {
     const [pokemons, setPokemons] = useState({});
 
     const onSetActive = (id) => {
+        PokemonContex.onSelectedPokemon()
         setPokemons(prev => ({
             ...prev,
             [id]: {
@@ -53,15 +56,9 @@ export default function StartPage() {
                         }}>
                     Start Game
                 </button>
-
-                {/*<button onClick={() => {*/}
-                {/*    addPokemon();*/}
-                {/*}}>*/}
-                {/*    AddNew*/}
-                {/*</button>*/}
             </div>
 
-            <div className='flex'>
+            <div className={Styles.flex}>
                 {
                     Object.entries(pokemons).map(([key, elem]) => {
                         return <PokemonCard key={key}
