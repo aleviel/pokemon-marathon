@@ -26,7 +26,8 @@ export default function StartPage() {
     const [pokemons, setPokemons] = useState({});
 
     const onSetActive = (id) => {
-        PokemonContex.onSelectedPokemon()
+        const selectedPokemon = {...pokemons[id]}
+        PokemonContex.onSelectedPokemon(id, selectedPokemon)
         setPokemons(prev => ({
             ...prev,
             [id]: {
@@ -34,6 +35,11 @@ export default function StartPage() {
                 selected: !prev[id].selected
             }
         }))
+    }
+
+    const addPokemon = () => {
+        const newPokemon = Object.entries(pokemons)[Math.floor(Math.random() * 5)][1]
+        firebase.addPokemon(newPokemon)
     }
 
     return (
@@ -54,7 +60,20 @@ export default function StartPage() {
                         onClick={() => {
                             history.push('/home')
                         }}>
+                    Go Home
+                </button>
+                <button style={{'marginBottom': 10}}
+                        onClick={() => {
+                            history.push('/game/board')
+                        }}
+                        disabled={Object.entries(PokemonContex.pokemons).length < 5}>
                     Start Game
+                </button>
+                <button style={{'marginBottom': 40}}
+                        onClick={() => {
+                            addPokemon()
+                        }}>
+                    Add Pokemon
                 </button>
             </div>
 
@@ -72,7 +91,9 @@ export default function StartPage() {
                                             isActive={true}
                                             isSelected={elem.selected}
                                             onSetActive={() => {
-                                                onSetActive(key)
+                                                if (Object.keys(PokemonContex.pokemons).length < 5 || elem.selected) {
+                                                    onSetActive(key)
+                                                }
                                             }}
                         />
                     })

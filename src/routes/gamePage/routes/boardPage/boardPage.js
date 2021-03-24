@@ -1,10 +1,29 @@
+import {useContext} from 'react';
+import PokemonCard from "../../../../components/pokemonCard";
+
+import {PokemonContext} from "../../../../context/pokemonContex";
+
 import Styles from './styles.module.css';
 
 const BoardPage = () => {
+    const {pokemons} = useContext(PokemonContext)
+
     return (
         <div className={Styles.root}>
             <div className={Styles.playerOne}>
-
+                {
+                    Object.values(pokemons).map(({name, id, img, values, type}) =>
+                        <PokemonCard key={id}
+                                     idKey={id}
+                                     className={Styles.card}
+                                     name={name}
+                                     id={id}
+                                     img={img}
+                                     values={values}
+                                     type={type}
+                                     minimize
+                                     isActive/>)
+                }
             </div>
             <div className={Styles.board}>
                 <div className={Styles.boardPlate}>1</div>
@@ -18,7 +37,8 @@ const BoardPage = () => {
                 <div className={Styles.boardPlate}>9</div>
             </div>
         </div>
-    );
+    )
+        ;
 };
 
 export default BoardPage;

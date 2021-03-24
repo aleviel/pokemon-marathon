@@ -18,6 +18,7 @@ export default function App() {
 
     const match = useRouteMatch('/');
     const isHomePage = useLocation().pathname === '/home';
+    const isBoardPage = useLocation().pathname === '/game/board';
 
     return (
         <FireBaseContext.Provider value={new Firebase()}>
@@ -27,7 +28,7 @@ export default function App() {
                     <>
                         <MenuHeader bgActive={!(match.isExact || isHomePage)}/>
                         <div className={CN(Styles.wrap, {
-                            [Styles.isHomePage]: (match.isExact || isHomePage)
+                            [Styles.isHomePage]: (match.isExact || isHomePage || isBoardPage)
                         })}>
                             <Switch>
                                 <Route path='/' exact component={HomePage}/>
