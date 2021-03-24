@@ -1,12 +1,12 @@
 // import MenuHeader from "../../menuHeader";
-import Header from "../../header";
-import Layout from "../../layout";
-import Footer from "../../footer";
+import Header from "../../components/header";
+import Layout from "../../components/layout";
+import Footer from "../../components/footer";
 // import PokemonCard from "../../pokemonCard";
 
 import './styles.css'
-import Img from '../../images/bg3.jpg'
-import Img2 from '../../images/bg2.jpg'
+import Img from '../../assets/bg3.jpg'
+import Img2 from '../../assets/bg2.jpg'
 // import pokemonCards from '../../pokemons.json'
 
 function HomePage({onButtonClick}) {

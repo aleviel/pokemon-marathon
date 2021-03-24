@@ -1,11 +1,11 @@
-import Layout from "../../layout";
+import Layout from '../../components/layout';
 
-export default function ContactPage() {
+export default function AboutPage() {
     return (
         <Layout
-            title={'ContactPage title'}
+            title={'About this game'}
         >
-            <p>In the game two players face off against one another, one side playing as "blue", the other as "red"
+            <p>In the game two players face off against one another, one side playing as 'blue', the other as 'red'
                 on a 3x3 grid. Each player has five cards in a hand and the aim is to capture the opponent's cards
                 by turning them into the player's own color of red or blue.
             </p>
