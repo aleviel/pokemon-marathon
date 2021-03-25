@@ -9,7 +9,7 @@ export default function PokemonCard(props) {
     return (
         <div
             onClick={() => {
-                onSetActive(idKey)
+                onSetActive && onSetActive(idKey)
             }}
             className={CN(className, Styles.pokemonCard, {[Styles.active]: isActive, [Styles.selected]: isSelected})}>
             <div className={Styles.cardFront}>
