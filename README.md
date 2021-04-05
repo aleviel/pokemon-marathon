@@ -2,7 +2,7 @@
 
 По итогам марафона получен сертификат:
 
-![Certificate](https://github.com/aleviel/pokemon-marathon/blob/main/results.png)
+![Certificate](https://github.com/aleviel/pokemon-marathon/blob/main/results.png?width=500)
 
 Скриншоты меню и геймплея игры. 
 
