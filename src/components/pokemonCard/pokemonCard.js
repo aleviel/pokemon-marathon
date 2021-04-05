@@ -4,17 +4,30 @@ import Styles from './styles.module.css'
 
 export default function PokemonCard(props) {
 
-    const {minimize, className, onSetActive, name, id, img, values, type, isActive, idKey, isSelected} = props;
+    const {
+        minimize,
+        className,
+        onSetActive,
+        name,
+        id,
+        img,
+        values,
+        type,
+        isActive,
+        idKey,
+        isSelected,
+        possession
+    } = props;
 
     return (
         <div
             onClick={() => {
-                onSetActive(idKey)
+                onSetActive && onSetActive(idKey)
             }}
             className={CN(className, Styles.pokemonCard, {[Styles.active]: isActive, [Styles.selected]: isSelected})}>
             <div className={Styles.cardFront}>
                 <div className={CN(Styles.wrap, Styles.front)}>
-                    <div className={CN(Styles.pokemon, Styles[type])}>
+                    <div className={CN(Styles.pokemon, Styles[type])} style={{background: possession}}>
                         <div className={Styles.values}>
                             <div className={CN(Styles.count, Styles.top)}>{values.top}</div>
                             <div className={CN(Styles.count, Styles.right)}>{values.right}</div>
