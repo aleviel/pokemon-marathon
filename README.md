@@ -6,5 +6,9 @@
 
 Скриншоты меню и геймплея игры. 
 
-![GamePlay](https://github.com/aleviel/pokemon-marathon/blob/main/results.png =500x)
+
+
+<div style="width:500px;float:left;margin:0 10px 10px 0" markdown="1">
+    ![GamePlay](https://github.com/aleviel/pokemon-marathon/blob/main/results.png)
+</div>
  
