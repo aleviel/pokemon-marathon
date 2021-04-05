@@ -8,6 +8,23 @@ import {PokemonContext} from '../../../../context/pokemonContex';
 
 import Styles from './styles.module.css';
 
+const counterWin = (board) => {
+
+    let player1Count = 0;
+    let player2Count = 0;
+
+    board.forEach(item => {
+        if (item.card.possession === 'red') {
+            player2Count++;
+        }
+        if (item.card.possession === 'blue') {
+            player1Count++;
+        }
+    })
+
+    return [player1Count, player2Count];
+}
+
 const BoardPage = () => {
     const {pokemons} = useContext(PokemonContext)
     const history = useHistory();
@@ -21,43 +38,37 @@ const BoardPage = () => {
     );
     const [player2, setPlayer2] = useState([]);
     const [choiceCard, setChoiceCard] = useState(null);
+    const [steps, setSteps] = useState(0);
 
     useEffect(() => {
-        {
-            (async function fetchData() {
-                const res = await fetch('https://reactmarathon-api.netlify.app/api/board');
-                const board = await res.json();
-                setBoard(board.data);
-            })();
-        }
+        (async function fetchData() {
+            const res = await fetch('https://reactmarathon-api.netlify.app/api/board');
+            const board = await res.json();
+            setBoard(board.data);
+        })();
 
-        {
-            (async function fetchData2() {
-                const res2 = await fetch('https://reactmarathon-api.netlify.app/api/create-player');
-                const board2Request = await res2.json();
-                setPlayer2(() => {
-                    return board2Request.data.map(item => ({
-                        ...item,
-                        possession: 'red'
-                    }))
-                });
-            })();
-        }
+        (async function fetchData2() {
+            const res2 = await fetch('https://reactmarathon-api.netlify.app/api/create-player');
+            const board2Request = await res2.json();
+            setPlayer2(() => {
+                return board2Request.data.map(item => ({
+                    ...item,
+                    possession: 'red'
+                }))
+            });
+        })();
     }, [])
 
-    //
-    // if (Object.entries(pokemons).length === 0) {
-    //     history.replace('/game')
-    // }
+    if (Object.entries(pokemons).length === 0) {
+        history.replace('/game')
+    }
 
-    async function onClickOnBoard(position) {
-        console.log(position);
-        console.log('card', choiceCard)
+    const onClickOnBoard = async (position) => {
         if (choiceCard) {
             const params = {
                 position,
                 card: choiceCard,
-                gameBoard,
+                board: gameBoard,
             };
 
             const res = await fetch('https://reactmarathon-api.netlify.app/api/players-turn', {
@@ -70,9 +81,35 @@ const BoardPage = () => {
 
             const request = await res.json();
             setBoard(request.data);
+
+            if (choiceCard.player === 1) {
+                setPlayer1(prev => prev.filter(item =>
+                    item.id !== choiceCard.id
+                ))
+            }
+            if (choiceCard.player === 2) {
+                setPlayer2(prev => prev.filter(item =>
+                    item.id !== choiceCard.id
+                ))
+            }
+            setSteps(prev => prev + 1);
+        }
+    }
+    useEffect(() => {
+
+        if (steps === 9) {
+            const [count1, count2] = counterWin(gameBoard);
+
+            if (count1 > count2) {
+                alert('U WIN!')
+            } else if (count1 < count2) {
+                alert('U LOSE!')
+            } else {
+                alert('DRAW!')
+            }
         }
 
-    }
+    }, [steps])
 
     return (
         <div className={Styles.root}>
@@ -107,7 +144,7 @@ const BoardPage = () => {
                              }}
                         >
                             {
-                                // item.card && <PokemonCard {...item} minimize/>
+                                item.card && <PokemonCard {...item.card} minimize isActive/>
                             }
                         </div>
                     ))

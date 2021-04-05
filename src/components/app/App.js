@@ -26,7 +26,7 @@ export default function App() {
                 <Route path='/404' component={NotFound}/>
                 <Route>
                     <>
-                        <MenuHeader bgActive={!(match.isExact || isHomePage)}/>
+                        <MenuHeader bgActive={!(match.isExact || isHomePage || isBoardPage)}/>
                         <div className={CN(Styles.wrap, {
                             [Styles.isHomePage]: (match.isExact || isHomePage || isBoardPage)
                         })}>
